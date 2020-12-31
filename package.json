@@ -1,0 +1,27 @@
+{
+  "name": "tabletop-addict",
+  "version": "0.1.0",
+  "description": "A database for analog tabletop entertainment",
+  "repository": "git@github.com:scorpiosoft/tabletop_addict.git",
+  "author": "Christopher Biessener <cpbiessener@gmail.com>",
+  "license": "GPL",
+  "main": "server.js",
+  "scripts": {
+    "server": "node server.js",
+    "client": "node scripts/start-client.js",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "build": "node scripts/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "installDeps": "yarn && cd client && yarn"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.8"
+  }
+}
