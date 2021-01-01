@@ -20,6 +20,11 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/ttaddict"
                , { useNewUrlParser: true,
                    useUnifiedTopology: true
                  });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'mongo connection error:'));
+db.once('open', function() {
+  // we're connected!
+});
 
 // Start the API server
 app.listen(PORT, function() {
