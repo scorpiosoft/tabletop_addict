@@ -2,28 +2,112 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const expenseSchema = new Schema({
-  expDesc: {
+const boardgameVersion = new Schema({
+  t: {
+    alias: title,
     type: String,
-    required: true
+    required: true,
+    index: true
   },
-  expAmount: {
-    type: Number,
-    required: true
+  d: {
+    alias: description,
+    type: String
   },
-  expAmountLocalCurrency: {
-    type: Number,
-    required: true
+  y: {
+    alias: yearPublished,
+    type: Number
   },
-  expDate: {
-    type: Date,
-    default: Date.now
+  a: {
+    alias: artists,
+    type: Schema.Types.ObjectId, ref: 'person'
   },
-  user: {
-    type: Schema.Types.ObjectId, ref: 'user'
+  l: {
+    alias: languages,
+    type: [String]
+  },
+  s: {
+    alias: boxSize,
+    type: String
+  },
+  w: {
+    alias: boxWeight,
+    type: String
   }
 });
 
-const Expense = mongoose.model('Expense', expenseSchema);
+const boardgameSchema = new Schema({
+  t: {
+    alias: title,
+    type: String,
+    required: true,
+    index: true
+  },
+  st: {
+    alias: subtitle,
+    type: String,
+    sparse: true
+  },
+  y: {
+    alias: yearPublished,
+    type: Number,
+    required: true
+  },
+  d: {
+    alias: designers,
+    type: Schema.Types.ObjectId, ref: 'person'
+  },
+  a: {
+    alias: artists,
+    type: Schema.Types.ObjectId, ref: 'person'
+  },
+  minP: {
+    alias: minPlayers,
+    type: Number,
+  },
+  maxP: {
+    alias: maxPlayers,
+    type: Number,
+  },
+  minTime: {
+    type: Number,
+  },
+  maxTime: {
+    type: Number,
+  },
+  age: {
+    alias: recommendedAge,
+    type: Number,
+  },
+  desc: {
+    alias: description,
+    type: String,
+  },
+  i: {
+    alias: image,
+    type: String,
+  },
+  p: {
+    alias: publishers,
+    type: Schema.Types.ObjectId, ref: 'publisher'
+  },
+  awards: {
+    type: Schema.Types.ObjectId, ref: 'award'
+  },
+  m: {
+    alias: mechanics,
+    type: Schema.Types.ObjectId, ref: 'mechanic'
+  },
+  g: {
+    alias: genres,
+    type: Schema.Types.ObjectId, ref: 'genre'
+  },
+  v: {
+    alias: versions,
+    type: [boargameVersion]
+  }
+});
 
-module.exports = Expense;
+const BoardgameVersion = mongoose.model('BoardgameVersion', boardgameVersion);
+const Boardgame = mongoose.model('Boardgame', boardgameSchema);
+
+module.exports = Boardgame;
