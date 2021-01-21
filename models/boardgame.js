@@ -4,68 +4,84 @@ const { Schema } = mongoose;
 
 const boardgameVersion = new Schema({
   t: {
-    alias: title,
+    alias: 'title',
     type: String,
     required: true,
     index: true
   },
   d: {
-    alias: description,
+    alias: 'description',
     type: String
   },
   y: {
-    alias: yearPublished,
+    alias: 'yearPublished',
     type: Number
   },
   a: {
-    alias: artists,
+    alias: 'artists',
     type: Schema.Types.ObjectId, ref: 'person'
   },
+  p: {
+    alias: 'publishers',
+    type: Schema.Types.ObjectId, ref: 'publisher'
+  },
   l: {
-    alias: languages,
+    alias: 'languages',
     type: [String]
   },
   s: {
-    alias: boxSize,
+    alias: 'boxSize',
     type: String
   },
   w: {
-    alias: boxWeight,
+    alias: 'boxWeight',
     type: String
   }
 });
 
 const boardgameSchema = new Schema({
   t: {
-    alias: title,
+    alias: 'title',
     type: String,
     required: true,
     index: true
   },
   st: {
-    alias: subtitle,
+    alias: 'subtitle',
     type: String,
     sparse: true
   },
+  desc: {
+    alias: 'description',
+    type: String,
+  },
+  i: {
+    alias: 'image',
+    type: String,
+  },
+  v: {
+    alias: 'versions',
+    type: [boargameVersion]
+  }
   y: {
-    alias: yearPublished,
+    alias: 'yearPublished',
     type: Number,
     required: true
   },
   d: {
-    alias: designers,
+    alias: 'designers',
     type: Schema.Types.ObjectId, ref: 'person'
   },
   a: {
-    alias: artists,
+    alias: 'artists',
     type: Schema.Types.ObjectId, ref: 'person'
   },
   minP: {
-    alias: minPlayers,
+    alias: 'minPlayers',
     type: Number,
   },
   maxP: {
-    alias: maxPlayers,
+    alias: 'maxPlayers',
     type: Number,
   },
   minTime: {
@@ -74,37 +90,45 @@ const boardgameSchema = new Schema({
   maxTime: {
     type: Number,
   },
-  age: {
-    alias: recommendedAge,
+  playerTime: {
+    alias: 'perPlayerTime',
     type: Number,
   },
-  desc: {
-    alias: description,
-    type: String,
-  },
-  i: {
-    alias: image,
-    type: String,
+  age: {
+    alias: 'recommendedAge',
+    type: Number,
   },
   p: {
-    alias: publishers,
+    alias: 'publishers',
     type: Schema.Types.ObjectId, ref: 'publisher'
   },
   awards: {
     type: Schema.Types.ObjectId, ref: 'award'
   },
   m: {
-    alias: mechanics,
+    alias: 'mechanics',
     type: Schema.Types.ObjectId, ref: 'mechanic'
   },
   g: {
-    alias: genres,
+    alias: 'genres',
     type: Schema.Types.ObjectId, ref: 'genre'
   },
-  v: {
-    alias: versions,
-    type: [boargameVersion]
-  }
+  rb: {
+    alias: 'rulebookComprehension',
+    type: Number,
+  },
+  rc: {
+    alias: 'rulesComplexity',
+    type: Number,
+  },
+  gd: {
+    alias: 'gameplayDepth',
+    type: Number,
+  },
+  r: {
+    alias: 'rating',
+    type: Number,
+  },
 });
 
 const BoardgameVersion = mongoose.model('BoardgameVersion', boardgameVersion);
