@@ -68,7 +68,13 @@ const PollAge = (props) =>
     doc.a = parseInt(age);
     // handle mongo data change
     boardgameApi.setAge(doc).then(res =>
-    {}).catch(err => console.log(err));
+    {
+      const filter = { _id: doc._id };
+      boardgameApi.getAge(filter).then(res =>
+        {
+          setDoc(res.data);
+        }).catch(err => console.log(err));
+    }).catch(err => console.log(err));
     // now close dialog
     setShow(false);
   }
