@@ -61,8 +61,8 @@ const boardgameSchema = new Schema({
   },
   v: {
     alias: 'versions',
-    type: [boargameVersion]
-  }
+    type: Schema.Types.ObjectId, ref: 'boargameVersion',
+  },
   y: {
     alias: 'yearPublished',
     type: Number,
@@ -79,24 +79,42 @@ const boardgameSchema = new Schema({
   minP: {
     alias: 'minPlayers',
     type: Number,
+    // user poll
+    votes: [{ user: String, value: Number }],
+    avg: Number
   },
   maxP: {
     alias: 'maxPlayers',
     type: Number,
+    // user poll
+    votes: [{ user: String, value: Number }],
+    avg: Number
   },
   minTime: {
     type: Number,
+    // user poll
+    votes: [{ user: String, value: Number }],
+    avg: Number
   },
   maxTime: {
     type: Number,
+    // user poll
+    votes: [{ user: String, value: Number }],
+    avg: Number
   },
   playerTime: {
     alias: 'perPlayerTime',
     type: Number,
+    // user poll
+    votes: [{ user: String, value: Number }],
+    avg: Number
   },
+  // publisher recommended age
   age: {
-    alias: 'recommendedAge',
-    type: Number,
+    value: Number,
+    // user poll
+    votes: [{ user: String, value: Number }],
+    avg: Number
   },
   p: {
     alias: 'publishers',
@@ -116,22 +134,34 @@ const boardgameSchema = new Schema({
   rb: {
     alias: 'rulebookComprehension',
     type: Number,
+    // user poll
+    votes: [{ user: String, value: Number }],
+    avg: Number
   },
   rc: {
     alias: 'rulesComplexity',
     type: Number,
+    // user poll
+    votes: [{ user: String, value: Number }],
+    avg: Number
   },
   gd: {
     alias: 'gameplayDepth',
     type: Number,
+    // user poll
+    votes: [{ user: String, value: Number }],
+    avg: Number
   },
   r: {
     alias: 'rating',
     type: Number,
+    // user poll
+    votes: [{ user: String, value: Number }],
+    avg: Number
   },
 });
 
 const BoardgameVersion = mongoose.model('BoardgameVersion', boardgameVersion);
 const Boardgame = mongoose.model('Boardgame', boardgameSchema);
 
-module.exports = Boardgame;
+module.exports = { Boardgame, BoardgameVersion };
