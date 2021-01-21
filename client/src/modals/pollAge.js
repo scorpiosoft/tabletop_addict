@@ -69,6 +69,7 @@ const PollAge = (props) =>
     // handle mongo data change
     boardgameApi.setAge(doc).then(res =>
     {
+      // re-read the DB to be able to update the UI
       const filter = { _id: doc._id };
       boardgameApi.getAge(filter).then(res =>
         {
