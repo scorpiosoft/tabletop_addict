@@ -55,13 +55,21 @@ const boardgameSchema = new Schema({
     alias: 'description',
     type: String,
   },
+  e: {
+    alias: 'expansion',
+    type: Boolean,
+  },
+  base: {
+    alias: 'expansionBasegame',
+    type: Schema.Types.ObjectId, ref: 'boardgame',
+  },
   i: {
     alias: 'image',
     type: String,
   },
   v: {
     alias: 'versions',
-    type: Schema.Types.ObjectId, ref: 'boargameVersion',
+    type: Schema.Types.ObjectId, ref: 'boardgameVersion',
   },
   y: {
     alias: 'yearPublished',
